@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    jdbcUrl: jdbc:mysql://localhost:3306/sanctuary?autoReconnect=true&useSSL=false
+    username: sanctuaryuser
+    password: accessdenied!a#
+    driver-class-name: com.mysql.jdbc.Driver
+    dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+    cachePrepStmts: true
+    prepStmtCacheSize: 250
+    prepStmtCacheSqlLimit: 2048
+    useServerPrepStmts: true
+    useLocalSessionState: true
+    useLocalTransactionState: true
+    rewriteBatchedStatements: true
+    cacheResultSetMetadata: true
+    cacheServerConfiguration: true
+    elideSetAutoCommits: true
+    maintainTimeStats: false
