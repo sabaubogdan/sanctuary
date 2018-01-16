@@ -1,18 +1,45 @@
-spring:
-  datasource:
-    jdbcUrl: jdbc:mysql://localhost:3306/sanctuary?autoReconnect=true&useSSL=false
-    username: sanctuaryuser
-    password: accessdenied!a#
-    driver-class-name: com.mysql.jdbc.Driver
-    dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-    cachePrepStmts: true
-    prepStmtCacheSize: 250
-    prepStmtCacheSqlLimit: 2048
-    useServerPrepStmts: true
-    useLocalSessionState: true
-    useLocalTransactionState: true
-    rewriteBatchedStatements: true
-    cacheResultSetMetadata: true
-    cacheServerConfiguration: true
-    elideSetAutoCommits: true
-    maintainTimeStats: false
+ databaseChangeLog:
+   - changeSet:
+       id: 1
+       author: Bogdan
+       changes:
+         - createTable:
+             tableName: first_call
+             columns:
+               - column:
+                   name: id
+                   type: bigint
+                   autoIncrement: true
+                   constraints:
+                     primaryKey: true
+                     nullable: false
+               - column:
+                   name: what_is_the_emergency
+                   type: varchar(1500)
+                   constraints:
+                     nullable: false
+               - column:
+                   name: patient_name
+                   type: varchar(100)
+                   constraints:
+                     nullable: false
+               - column:
+                   name: patient_age
+                   type: int
+                   constraints:
+                     nullable: false
+               - column:
+                   name: address
+                   type: varchar(150)
+                   constraints:
+                     nullable: false
+               - column:
+                   name: contact_number
+                   type: bigint
+                   constraints:
+                     nullable: false
+               - column:
+                   name: other_relevant_information
+                   type: varchar(1500)
+                   constraints:
+                     nullable: false
