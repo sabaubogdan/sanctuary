@@ -27,16 +27,9 @@ public class FirstCallServiceTest {
     @Test
     public void createFirstCallTest() {
         //given
-        FirstCall firstCall = new FirstCall();
-        firstCall.setWhatIsTheEmergency(PATIENT_WHAT_IS_THE_EMERGENCY);
-        firstCall.setPatientName(PATIENT_NAME);
-        firstCall.setPatientAge(PATIENT_AGE);
-        firstCall.setAddress(PATIENT_ADDRESS);
-        firstCall.setContactNumber(PATIENT_CONTACT_NUMBER);
-        firstCall.setOtherRelevantInformation(PATIENT_OTHER_RELEVANT_DATA);
 
         //when
-        FirstCall savedFirstCall = firstCallService.createFirstCall(firstCall);
+        FirstCall savedFirstCall = buildAndSaveFistCall();
 
         //then
         Assert.assertNotNull("There should have been one firstCall saved in the database", savedFirstCall);
@@ -51,14 +44,7 @@ public class FirstCallServiceTest {
     @Test
     public void getFirstCall() {
         //given
-        FirstCall firstCall = new FirstCall();
-        firstCall.setWhatIsTheEmergency(PATIENT_WHAT_IS_THE_EMERGENCY);
-        firstCall.setPatientName(PATIENT_NAME);
-        firstCall.setPatientAge(PATIENT_AGE);
-        firstCall.setAddress(PATIENT_ADDRESS);
-        firstCall.setContactNumber(PATIENT_CONTACT_NUMBER);
-        firstCall.setOtherRelevantInformation(PATIENT_OTHER_RELEVANT_DATA);
-        FirstCall savedFirstCall = firstCallService.createFirstCall(firstCall);
+        FirstCall savedFirstCall = buildAndSaveFistCall();
 
         //when
         FirstCall findFirstCall = firstCallService.getFirstCall(savedFirstCall.getId());
@@ -76,14 +62,7 @@ public class FirstCallServiceTest {
     @Test
     public void deleteFirstCall() {
         //given
-        FirstCall firstCall = new FirstCall();
-        firstCall.setWhatIsTheEmergency(PATIENT_WHAT_IS_THE_EMERGENCY);
-        firstCall.setPatientName(PATIENT_NAME);
-        firstCall.setPatientAge(PATIENT_AGE);
-        firstCall.setAddress(PATIENT_ADDRESS);
-        firstCall.setContactNumber(PATIENT_CONTACT_NUMBER);
-        firstCall.setOtherRelevantInformation(PATIENT_OTHER_RELEVANT_DATA);
-        FirstCall savedFirstCall = firstCallService.createFirstCall(firstCall);
+        FirstCall savedFirstCall = buildAndSaveFistCall();
 
         //when
         firstCallService.deleteFirstCall(savedFirstCall.getId());
@@ -95,14 +74,7 @@ public class FirstCallServiceTest {
     @Test
     public void updateFirstCall() {
         //given
-        FirstCall firstCall = new FirstCall();
-        firstCall.setWhatIsTheEmergency(PATIENT_WHAT_IS_THE_EMERGENCY);
-        firstCall.setPatientName(PATIENT_NAME);
-        firstCall.setPatientAge(PATIENT_AGE);
-        firstCall.setAddress(PATIENT_ADDRESS);
-        firstCall.setContactNumber(PATIENT_CONTACT_NUMBER);
-        firstCall.setOtherRelevantInformation(PATIENT_OTHER_RELEVANT_DATA);
-        FirstCall savedFirstCall = firstCallService.createFirstCall(firstCall);
+        FirstCall savedFirstCall = buildAndSaveFistCall();
 
         //when
         savedFirstCall.setOtherRelevantInformation(NEW_PATIENT_OTHER_RELEVANT_DATA);
@@ -112,6 +84,20 @@ public class FirstCallServiceTest {
         Assert.assertNotNull("There should have been one firstCall saved in the database", updateFirstCall);
         Assert.assertEquals("The first call other info should have been updated", NEW_PATIENT_OTHER_RELEVANT_DATA, updateFirstCall.getOtherRelevantInformation());
 
+    }
+
+    private FirstCall buildAndSaveFistCall(){
+
+        FirstCall firstCall = new FirstCall();
+        firstCall.setWhatIsTheEmergency(PATIENT_WHAT_IS_THE_EMERGENCY);
+        firstCall.setPatientName(PATIENT_NAME);
+        firstCall.setPatientAge(PATIENT_AGE);
+        firstCall.setAddress(PATIENT_ADDRESS);
+        firstCall.setContactNumber(PATIENT_CONTACT_NUMBER);
+        firstCall.setOtherRelevantInformation(PATIENT_OTHER_RELEVANT_DATA);
+        FirstCall savedFirstCall = firstCallService.createFirstCall(firstCall);
+
+        return savedFirstCall;
     }
 
 }
