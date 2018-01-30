@@ -41,48 +41,54 @@ public class AmbulanceServiceTest {
 
         //when
         Ambulance savedAmbulance = buildAndSaveAmbulance();
+        FirstCall savedFirstCall = buildAndSaveFistCall();
 
         //then
         Assert.assertNotNull("There should have been one Ambulance saved in the database", savedAmbulance);
-        Assert.assertEquals("The Ambulance first treatment should have matched", FIRST_TREATMENT ,savedAmbulance.getFirstTreatment());
-        Assert.assertEquals("The Ambulance old diseases should have matched", OLD_DISEASES ,savedAmbulance.getOldDiseases());
-        Assert.assertEquals("The Ambulance other observations should have matched", OTHER_OBSERVATIONS ,savedAmbulance.getOtherObservations());
-        Assert.assertEquals("The Ambulance old treatment should have matched", OLD_TREATMENT ,savedAmbulance.getOldTreatment());
+        Assert.assertEquals("The Ambulance id should matche first call id", savedAmbulance.getId(), savedFirstCall.getId());
+        Assert.assertEquals("The Ambulance first treatment should have matched", FIRST_TREATMENT, savedAmbulance.getFirstTreatment());
+        Assert.assertEquals("The Ambulance old diseases should have matched", OLD_DISEASES, savedAmbulance.getOldDiseases());
+        Assert.assertEquals("The Ambulance other observations should have matched", OTHER_OBSERVATIONS, savedAmbulance.getOtherObservations());
+        Assert.assertEquals("The Ambulance old treatment should have matched", OLD_TREATMENT, savedAmbulance.getOldTreatment());
 
     }
 
     @Test
-    public void getAmbulanceTest(){
+    public void getAmbulanceTest() {
         //given
         Ambulance savedAmbulance = buildAndSaveAmbulance();
+        FirstCall savedFirstCall = buildAndSaveFistCall();
 
         //when
         Ambulance findAmbulance = ambulanceService.getAmbulance(savedAmbulance.getId());
 
         //then
         Assert.assertNotNull("There should have been one Ambulance saved in the database", findAmbulance);
-        Assert.assertEquals("The Ambulance first treatment should have matched", FIRST_TREATMENT ,savedAmbulance.getFirstTreatment());
-        Assert.assertEquals("The Ambulance old diseases should have matched", OLD_DISEASES ,savedAmbulance.getOldDiseases());
-        Assert.assertEquals("The Ambulance other observations should have matched", OTHER_OBSERVATIONS ,savedAmbulance.getOtherObservations());
-        Assert.assertEquals("The Ambulance old treatment should have matched", OLD_TREATMENT ,savedAmbulance.getOldTreatment());
+        Assert.assertEquals("The Ambulance first treatment should have matched", FIRST_TREATMENT, savedAmbulance.getFirstTreatment());
+        Assert.assertEquals("The Ambulance old diseases should have matched", OLD_DISEASES, savedAmbulance.getOldDiseases());
+        Assert.assertEquals("The Ambulance other observations should have matched", OTHER_OBSERVATIONS, savedAmbulance.getOtherObservations());
+        Assert.assertEquals("The Ambulance old treatment should have matched", OLD_TREATMENT, savedAmbulance.getOldTreatment());
     }
 
     @Test
-    public void deleteAmbulanceTest(){
+    public void deleteAmbulanceTest() {
         //given
         Ambulance savedAmbulance = buildAndSaveAmbulance();
+        FirstCall savedFirstCall = buildAndSaveFistCall();
 
         //when
         ambulanceService.deleteAmbulance(savedAmbulance.getId());
+        firstCallService.deleteFirstCall(savedFirstCall.getId());
 
         //then
         Assert.assertNull("Ambulance should have been deleted from db", ambulanceService.getAmbulance(savedAmbulance.getId()));
     }
 
     @Test
-    public void updateAmbulanceTest(){
+    public void updateAmbulanceTest() {
         //given
         Ambulance savedAmbulance = buildAndSaveAmbulance();
+        FirstCall savedFirstCall = buildAndSaveFistCall();
 
         //when
         savedAmbulance.setFirstTreatment(NEW_FIRST_TREATMENT);
@@ -93,7 +99,7 @@ public class AmbulanceServiceTest {
         Assert.assertEquals("The Ambulance new patient treamtent should have been updated", NEW_FIRST_TREATMENT, updatedAmbulance.getFirstTreatment());
     }
 
-    private Ambulance buildAndSaveAmbulance(){
+    private Ambulance buildAndSaveAmbulance() {
         Ambulance ambulance = new Ambulance();
         ambulance.setFirstTreatment(FIRST_TREATMENT);
         ambulance.setOldDiseases(OLD_DISEASES);
@@ -106,17 +112,17 @@ public class AmbulanceServiceTest {
         return savedAmbulance;
     }
 
-//    private FirstCall buildAndSaveFistCall(){
-//
-//        FirstCall firstCall = new FirstCall();
-//        firstCall.setWhatIsTheEmergency(PATIENT_WHAT_IS_THE_EMERGENCY);
-//        firstCall.setPatientName(PATIENT_NAME);
-//        firstCall.setPatientAge(PATIENT_AGE);
-//        firstCall.setAddress(PATIENT_ADDRESS);
-//        firstCall.setContactNumber(PATIENT_CONTACT_NUMBER);
-//        firstCall.setOtherRelevantInformation(PATIENT_OTHER_RELEVANT_DATA);
-//        FirstCall savedFirstCall = firstCallService.createFirstCall(firstCall);
-//
-//        return savedFirstCall;
-//    }
+    private FirstCall buildAndSaveFistCall() {
+
+        FirstCall firstCall = new FirstCall();
+        firstCall.setWhatIsTheEmergency(PATIENT_WHAT_IS_THE_EMERGENCY);
+        firstCall.setPatientName(PATIENT_NAME);
+        firstCall.setPatientAge(PATIENT_AGE);
+        firstCall.setAddress(PATIENT_ADDRESS);
+        firstCall.setContactNumber(PATIENT_CONTACT_NUMBER);
+        firstCall.setOtherRelevantInformation(PATIENT_OTHER_RELEVANT_DATA);
+        FirstCall savedFirstCall = firstCallService.createFirstCall(firstCall);
+
+        return savedFirstCall;
+    }
 }
