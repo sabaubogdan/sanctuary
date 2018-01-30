@@ -43,3 +43,37 @@
                    type: varchar(1500)
                    constraints:
                      nullable: false
+   - changeSet:
+       id: 2
+       author: Bogdan
+       changes:
+         - createTable:
+             tableName: ambulance
+             columns:
+               - column:
+                   name: id
+                   type: bigint
+                   autoIncrement: true
+                   constraints:
+                     primaryKey: true
+                     nullable: false
+               - column:
+                   name: first_treatment
+                   type: varchar(1500)
+                   constraints:
+                     nullable: false
+               - column:
+                   name: old_diseases
+                   type: varchar(1500)
+                   constraints:
+                     nullable: false
+               - column:
+                   name: old_treatment
+                   type: varchar(1500)
+                   constraints:
+                     nullable: false
+               - column:
+                   name: other_observations
+                   type: varchar(1500)
+                   constraints:
+                     nullable: false
